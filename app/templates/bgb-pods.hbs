@@ -1,0 +1,7 @@
+{{! Main container with pods}}
+<div class="podContainer">
+	{{#each model as |box|}}
+		{{pod-comp comp-item=box}}
+	{{/each}}
+</div>
+{{outlet}}

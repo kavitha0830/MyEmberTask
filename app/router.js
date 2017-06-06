@@ -7,6 +7,10 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+	//routing pod details
+  this.route('bgbPods', function() {
+    this.route('details',{'path' : '/:pod_id'});
+  });
 });
 
 export default Router;
