@@ -1,0 +1,42 @@
+<div class="searchSection">
+	<div class="locationDropdown">
+		{{#power-select class="locationDropdown" placeholder="From location" required="required" searchEnabled=false
+		options=dropdownval selected=selectedAddress onchange=(action "setAddress") as |val| }}
+		{{val.location}}
+		{{/power-select}}
+	</div>
+	<div class="locationDropdown">
+		{{#power-select class="locationDropdown" placeholder="To location" required="required" searchEnabled=false options=dropdownval1 selected=selectedAddress1 onchange=(action "setToLocation") as |val| }}
+		{{val.location}}
+		{{/power-select}}
+	</div>
+	<div class="flightDate">{{pikaday-input onSelection=(action 'setFromDate') placeholder="start date" format="MM/DD/YYYY" minDate=minDate}}
+	{{pikaday-input onSelection=(action 'setToDate') placeholder="end date" format="MM/DD/YYYY" minDate=minDate}}</div>
+	<button class="searchButton" {{action "searchFlightBtn"}}>Search flight</button>
+</div>
+<div class="blueBorder"></div>
+<div class="flightDisplay">
+	<table class="flightTable" cellpadding=15>
+  <tr>
+    <th>Airways</th>
+    <th>Depart</th> 
+    <th>Arrive</th>
+    <th>Start date</th>
+    <th>Price in Rupees</th>
+  </tr>
+  {{#each flights as |flightDisplay|}}
+  {{#if noResponse }}
+  <div>No flights found</div>
+  {{else}}
+  <tr>
+    <td><img src={{flightDisplay.imageUrl}} width=50 height=50><div>{{flightDisplay.airName}}</div></td>
+    <td>{{flightDisplay.depart}}</td> 
+    <td>{{flightDisplay.arrive}}</td>
+    <td>{{flightDisplay.startDate}}</td>
+    <td>{{flightDisplay.price}} &#8377;</td>
+  </tr>
+  {{/if}}
+  {{/each}}
+
+</table>
+</div>
